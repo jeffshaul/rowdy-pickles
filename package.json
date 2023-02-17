@@ -1,0 +1,23 @@
+{
+  "name": "rowdy pickles",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run build && node server/index.js",
+    "build": "npm install && cd client && npm install && npm run build && cd ..",
+    "dev": "cd client && npm run build && cd .. && node server/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": "18.12.1",
+    "npm": "8.19.2"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.5.4"
+  }
+}

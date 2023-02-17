@@ -1,0 +1,554 @@
+@font-face {
+    font-family: "Troika";
+    src: url("../fonts/troika.otf");
+}
+
+body {
+    background-color: black;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    touch-action: manipulation;
+
+    /* Safari */
+    -webkit-user-select: none;
+
+    /* IE 10 and IE 11 */
+    -ms-user-select: none;
+
+    /* Standard syntax */
+    user-select: none;
+
+    cursor: url("../images/hud/crosshair.png") 32 32, crosshair;
+}
+
+#loadingScreen {
+    background-color: black;
+    z-index: 1000;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+#blocker {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.97);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    text-align: center;
+}
+
+#blocker img {
+    width: 50%;
+}
+
+.center {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#blocker p {
+    color: white;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* GENERAL HUD ELEMENTS */
+
+.hud {
+    position: absolute;
+    padding: 3vh;
+    background-size: 100% 100%;
+    font-family: "Troika", serif;
+    font-size: 4vh;
+}
+
+#fullscreenHUD {
+    position: absolute;
+    bottom: 1vh;
+    right: 1vh;
+}
+
+#fullscreenHUD button {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    border: none;
+}
+
+/* INTRO HUD */
+
+#introHUD {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: transparent;
+    font-size: 5vh;
+    color: white;
+    text-align: center;
+}
+
+#logo {
+    width: 33vw;
+}
+
+#press2play {
+    margin-top: 10vh;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.countdown {
+    height: 20vh;
+    display: none;
+    animation: countdownAnimation 0.75s linear 0s 1 normal forwards;
+}
+
+#goalMessage {
+    transform: translateY(50%);
+    font-family: 'Troika';
+    font-size: 8vh;
+    -webkit-text-stroke: 2px black;
+    display: none;
+    animation: goalMessageAnimation 2.5s linear 0s 1 normal forwards;
+}
+
+/* KILLS HUD ELEMENT */
+
+#killsHUD {
+    top: -6vh;
+    left: 1vh;
+    height: 24vh;
+    width: 36vh;
+    padding: 0;
+    background-image: url("../images/hud/killsBG.png");
+}
+
+#killCount {
+    font-family: "Troika", serif;
+    font-size: 11vh;
+    position: absolute;
+    display: block;
+    top: 2.5vh;
+    right: 4vh;
+    transform: translateY(8vh);
+    min-width: 5vh;
+    text-align: right;
+}
+
+#highscore {
+    display: none;
+    position: absolute;
+    top: 10vh;
+    left: 4vh;
+    width: 30vh;
+    opacity: 70%;
+    transform: rotate(-10deg);
+    animation: stamp 0.6s linear 0s 1 normal forwards;
+}
+
+#keepGoingMessage {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 10vh;
+    font-family: 'Troika';
+    color: white;
+    animation: keepGoingAnimation 1s linear 0s 1 normal forwards;
+}
+
+/* MISSES HUD ELEMENT */
+
+#missesHUD {
+    top: 1vh;
+    right: 1vh;
+    height: 12vh;
+    width: 24vh;
+    padding-top: 1.6vh;
+    background-image: url("../images/hud/missesBG.png");
+}
+
+.life {
+    height: 8vh;
+    transform: translateY(1vh);
+}
+
+.xStamp {
+    animation: miss 0.4s linear 0s 1 normal forwards;
+}
+
+/* GAME OVER HUD */
+
+.gameEndMessage {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5vh;
+    font-family: 'Troika';
+    color: white;
+    animation: gameEndAnimation 2.5s linear 0s 1 normal forwards;
+}
+
+#gameOverHUD {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#credits {
+    position: relative;
+    display: none;
+    width: 10vw;
+    z-index: 100;
+    transform: translate(16vw, -28vh) scale(0.8) rotate(30deg);
+}
+
+#creditsHitbox {
+    background-color: transparent;
+    position: relative;
+    width: 2vw;
+    height: 2vh;
+    z-index: 100;
+    transform: translate(13vw, -26vh);
+}
+
+/* LEADERBOARD */
+:root {
+    --rowdy-green: #4E8125;
+    --rowdy-darkgreen: #325C12;
+    --rowdy-yellow: #FFC740;
+    --rowdy-orange: #F48F1D;
+    --rowdy-tan: #CDB98F;
+    --rowdy-brown: #E6C78F;
+}
+
+.leaderboard-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vw;
+    height: 70vh;
+    background: url("../images/hud/woodBackground.png");
+    background-repeat: auto;
+    background-size: 100% 100%;
+    padding: 10vh 15vh;
+    font-family: 'Troika';
+}
+
+.leaderboard-grid {
+    box-sizing: border-box;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    grid-template-rows: 1.5fr 1fr 1fr 1fr 0.5fr;
+    gap: 0px 1vw;
+    grid-template-areas:
+        "Leaderboard-Table Logo"
+        "Leaderboard-Table Retry-Button"
+        "Leaderboard-Table Mint-Button"
+        "Leaderboard-Table Home-Button"
+        "Leaderboard-Table Socials";
+}
+
+.Leaderboard-Table {
+    grid-area: Leaderboard-Table;
+    background-color: var(--rowdy-green);
+    text-align: center;
+    padding: 0 1vw;
+}
+
+.Leaderboard-Table h1 {
+    font-size: 5vh;
+    margin: 1vh;
+}
+
+.Leaderboard-Table h2 {
+    font-size: 2.3vh;
+    margin: 1vh;
+}
+
+.Leaderboard-Table table {
+    width: 100%;
+    background-color: var(--rowdy-tan);
+    font-size: 4vh;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.Leaderboard-Table tbody {
+    display: block;
+    width: 100%;
+    height: 52vh;
+    overflow: auto;
+}
+
+.Leaderboard-Table thead tr {
+    display: block;
+}
+
+.Leaderboard-Table tbody tr:nth-child(odd) {
+    background-color: var(--rowdy-brown);
+}
+
+.Leaderboard-Table td {
+    padding: 5px;
+    text-align: center;
+    width: 240px;
+}
+
+.Logo {
+    grid-area: Logo;
+}
+
+.Logo img {
+    width: 100%;
+}
+
+.Retry-Button {
+    grid-area: Retry-Button;
+}
+
+.Mint-Button {
+    grid-area: Mint-Button;
+}
+
+.Home-Button {
+    grid-area: Home-Button;
+}
+
+.Socials {
+    grid-area: Socials;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.menu-button {
+    width: 100%;
+    height: 10vh;
+    font-family: 'Troika';
+    font-size: 8vh;
+    color: black;
+    background-color: var(--rowdy-yellow);
+    border: none;
+}
+
+.menu-button:hover {
+    background-color: var(--rowdy-orange);
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 15px;
+
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--rowdy-green);
+    border-right: 5px var(--rowdy-tan) solid;
+    border-left: 5px var(--rowdy-tan) solid;
+    background-clip: padding-box;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--rowdy-darkgreen);
+}
+
+/* ANIMATIONS */
+
+.gameOverAnimation {
+    animation: bouncy 1s ease 0s 1 normal forwards;
+}
+
+@keyframes stamp {
+
+    0% {
+        transform: scale(4) rotate(0);
+        transform-origin: 0% 0%;
+        opacity: 0%;
+    }
+
+    20% {
+        transform: scale(4) rotate(0);
+        transform-origin: 0% 0%;
+        opacity: 100%;
+    }
+
+    100% {
+        transform: scale(1) rotate(-10deg);
+        transform-origin: 0% 0%;
+    }
+}
+
+@keyframes rotate {
+    100% {
+        background-position: 10% 0%;
+    }
+}
+
+@keyframes opacityChange {
+    50% {
+        opacity: .5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes countdownAnimation {
+    0% {
+        transform: scale(4);
+    }
+
+    40% {
+        transform: scale(1);
+    }
+
+    60% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes goalMessageAnimation {
+    0% {
+        transform: scale(4) translateY(50%);
+    }
+
+    20% {
+        transform: scale(1) translateY(50%);
+    }
+
+    90% {
+        transform: scale(1) translateY(50%);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1) translateY(50%);
+        opacity: 0;
+    }
+}
+
+@keyframes bouncy {
+    0% {
+        animation-timing-function: ease-in;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0);
+    }
+
+    38% {
+        animation-timing-function: ease-out;
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    55% {
+        animation-timing-function: ease-in;
+        transform: translate(-50%, -50%) scale(0.7);
+    }
+
+    72% {
+        animation-timing-function: ease-out;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    81% {
+        animation-timing-function: ease-in;
+        transform: translate(-50%, -50%) scale(0.84);
+    }
+
+    89% {
+        animation-timing-function: ease-out;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    95% {
+        animation-timing-function: ease-in;
+        transform: translate(-50%, -50%) scale(0.95);
+    }
+
+    100% {
+        animation-timing-function: ease-out;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes miss {
+    0% {
+        transform: scale(10) translateY(1vh);
+    }
+
+    100% {
+        transform: scale(1) translateY(1vh);
+    }
+}
+
+@keyframes gameEndAnimation {
+    0% {
+        transform: translate(-50%, -50%) scale(4);
+    }
+
+    20% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes keepGoingAnimation {
+    0% {
+        transform: translate(-50%, -50%) scale(4);
+    }
+
+    20% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* LOADING BAR */
+#loadingBarImage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    transform: translate(-50%, -50%);
+    clip-path: inset(0% 100% 0% 0%);
+}
+
+#loadingBarGhost {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    transform: translate(-50%, -50%);
+    opacity: 30%;
+}
+
+html {
+    visibility: visible;
+    opacity: 1;
+}

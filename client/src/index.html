@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Rowdy Pickles</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <style>
+    html {
+      visibility: hidden;
+      opacity: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <div id="loadingScreen">
+    <img id="loadingBarImage" src="">
+    <img id="loadingBarGhost" src="">
+  </div>
+
+  <div id="blocker">
+    <img id="logoBlocker" class="center">
+    <p>Please use landscape mode</p>
+  </div>
+
+  <div id="introHUD">
+    <img id="logo">
+    <p id="press2play" style="font-family: 'Troika'">Press to play</p>
+    <img id="countdown3" class="countdown">
+    <img id="countdown2" class="countdown">
+    <img id="countdown1" class="countdown">
+    <span id="goalMessage" class="countdown">Push Back <span class="requiredKills"></span> Pickles!</span>
+  </div>
+
+  <div id="killsHUD" class="hud">
+    <span id="killCount">0</span>
+  </div>
+
+  <img id="highscore">
+
+  <div id="missesHUD" class="hud">
+    <img id="life1" class="life">
+    <img id="life2" class="life">
+    <img id="life3" class="life">
+  </div>
+
+  <div id="fullscreenHUD">
+    <button id="fullscreenButton">Fullscreen</button>
+  </div>
+
+  <span id="missMessage" class="gameEndMessage">You couldn't hit the broad side of a barn!</span>
+  <span id="overrunMessage" class="gameEndMessage">You got overrun by these darn Rowdy Pickles!</span>
+  <span id="keepGoingMessage">Keep Going!</span>
+  <span id="winMessage" class="gameEndMessage">Ouch!  But you pushed back <span class="requiredKills"></span>+ pickles!</span>
+
+  <div id="gameOverHUD">
+    <img id="credits">
+    <div id="creditsHitbox"></div>
+    <div class="leaderboard-container">
+      <div class="leaderboard-grid">
+        <div class="Leaderboard-Table">
+          <h1>Leaderboard</h1>
+          <table>
+            <thead>
+              <tr>
+                <td>Rank</td>
+                <td>Pickle</td>
+                <td>Score</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>#342</td>
+                <td>420</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Mint</td>
+                <td>420</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>#342</td>
+                <td>420</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>#342</td>
+                <td>420</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>#342</td>
+                <td>420</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>#342</td>
+                <td>420</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>#342</td>
+                <td>420</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>#342</td>
+                <td>420</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>#342</td>
+                <td>420</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>#342</td>
+                <td>420</td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td>#342</td>
+                <td>420</td>
+              </tr>
+              <tr>
+                <td>12</td>
+                <td>#342</td>
+                <td>420</td>
+              </tr>
+              <tr>
+                <td>13</td>
+                <td>#342</td>
+                <td>420</td>
+              </tr>
+              <tr>
+                <td>13</td>
+                <td>#342</td>
+                <td>420</td>
+              </tr>
+              <tr>
+                <td>13</td>
+                <td>#342</td>
+                <td>420</td>
+              </tr>
+              <tr>
+                <td>13</td>
+                <td>#342</td>
+                <td>420</td>
+              </tr>
+            </tbody>
+          </table>
+          <h2>Stage 2 unlocks when 100 pickles are minted!</h2>
+        </div>
+
+        <div class="Logo">
+          <img id="leaderboard-logo" src="">
+        </div>
+
+        <div class="Retry-Button">
+          <button id="tryAgainBtn" class="menu-button">Retry</button>
+        </div>
+
+        <div class="Mint-Button">
+          <button id="mintBtn" class="menu-button">Mint</button>
+        </div>
+
+        <div class="Home-Button">
+          <button id="homeBtn" class="menu-button">Home</button>
+        </div>
+
+        <div class="Socials">
+          <button>Fuck</button>
+          <button>Social</button>
+          <button>Media</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
