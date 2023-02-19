@@ -56,6 +56,7 @@ export default class Stage {
                 superstage, 
                 (gltf) => {
                     Stage.gltf = gltf;
+                    console.log(gltf);
                     resolve();
                 }, 
                 (xhr) => {
