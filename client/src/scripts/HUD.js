@@ -75,17 +75,20 @@ export default class HUD {
     }
 
     static countdown(engine) {
-        let introLogo = document.getElementById('logo');
-        let press2play = document.getElementById('press2play');
+        // let introLogo = document.getElementById('logo');
+        // let press2play = document.getElementById('press2play');
+        let landingModal = document.getElementById('landing');
         let countdown3 = document.getElementById('countdown3');
         let countdown2 = document.getElementById('countdown2');
         let countdown1 = document.getElementById('countdown1');
         let goalMessage = document.getElementById('goalMessage');
 
-        // turn off intro logo and press2play, turn on 3
+        // turn off intro logo and press2play, turn on 3 DEPRECATED
+        // turn off landing modal
         setTimeout(() => {
-            introLogo.style.display = 'none';
-            press2play.style.display = 'none';
+            // introLogo.style.display = 'none';
+            // press2play.style.display = 'none';
+            landingModal.style.display = 'none';
             countdown3.style.display = 'block';
         }, 20);
 

@@ -1,4 +1,4 @@
-// import _ from 'lodash';
+import $ from 'jquery';
 import * as THREE from 'three';
 import Stage from './Stage';
 import Spawner from './Spawner';
@@ -24,15 +24,21 @@ export default class Engine {
         this.cameraClip = this.stage.camera.animations[0];
         this.cameraAction = this.cameraMixer.clipAction(this.cameraClip);
 
-        this.boundStartGame = this.startGame.bind(this);
+        // this.boundStartGame = this.startGame.bind(this);
         window.addEventListener('resize', this.onWindowResize.bind(this));
-        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            // true for mobile device
-            window.addEventListener('touchend', this.boundStartGame);
-        } else {
-            // false for not mobile device
-            window.addEventListener('click', this.boundStartGame);
-        }      
+        // if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        //     // true for mobile device
+        //     window.addEventListener('touchend', this.boundStartGame);
+        // } else {
+        //     // false for not mobile device
+        //     window.addEventListener('click', this.boundStartGame);
+        // }
+        
+        // add onclick event to play btn
+        $('#play-btn').on('click', (event) => {
+            event.stopPropagation();
+            this.startGame();
+        });
     }
 
     startGame() {
@@ -43,12 +49,12 @@ export default class Engine {
 
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             // true for mobile device
-            window.removeEventListener('touchend', this.boundStartGame);
+            // window.removeEventListener('touchend', this.boundStartGame);
             this.boundOnTouch = this.onTouch.bind(this);
             window.addEventListener('touchend', this.boundOnTouch);
         } else {
             // false for not mobile device
-            window.removeEventListener('click', this.boundStartGame);
+            // window.removeEventListener('click', this.boundStartGame);
             this.boundOnClick = this.onClick.bind(this);
             window.addEventListener('click', this.boundOnClick);
         }        

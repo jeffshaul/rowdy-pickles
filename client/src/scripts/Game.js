@@ -18,6 +18,7 @@ export default class Game {
             setTimeout(() => {
                 $('#loadingScreen').css('z-index', '-1');
                 $('#loadingScreen').hide();
+                $('#landing').show();
     
                 this.engine = new Engine();
                 this.engine.animate();

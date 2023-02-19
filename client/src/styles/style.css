@@ -86,6 +86,7 @@ body {
 
 /* LANDING MODAL */
 .landing-container {
+    display: none;
     position: absolute;    
     top: 50%;
     left: 50%;
@@ -97,11 +98,13 @@ body {
     background-size: 100% 100%;
     padding: 10vh 15vh;
     font-family: 'Troika';
+    animation: bouncy 1s linear 0s 1 normal forwards;
 }
 
 .landing-logo-container {
     height: 33%;
     width: 100%;
+    text-align: center;
 }
 
 .landing-logo-container img {
