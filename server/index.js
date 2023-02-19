@@ -60,5 +60,5 @@ io.on('connection', (socket) => {
     // Listen for client data
     socket.on('clientData', (...payload) => {
         socket.emit('serverData', classifications);
-    })
+    });
 });

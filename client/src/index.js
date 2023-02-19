@@ -18,6 +18,7 @@ import { inject } from '@vercel/analytics';
 inject();
 
 // set up asset URLs
+$('#landing-logo').attr('src', logo);
 $('#logo').attr('src', logo);
 $('#logoBlocker').attr('src', logo);
 $('#countdown3').attr('src', countdown3);

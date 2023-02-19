@@ -139,6 +139,7 @@ export default class Engine {
         this.kills++;
         HUD.updateKills(this.kills);
         Choreographer.hitFlicker(this.stage.light);
+        // TODO notify server of kill (include session UUID)
     }
 
     reactToMiss() {
@@ -183,6 +184,7 @@ export default class Engine {
     endGame() {
         window.removeEventListener('click', this.boundOnClick);
         window.removeEventListener('touchend', this.boundOnTouch);
+        // TODO notify server of game end
     }
 
     onTouch(event) {
