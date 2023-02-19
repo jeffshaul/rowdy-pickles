@@ -14,6 +14,7 @@ import credits from './images/hud/credits.png';
 import difficulty from './config/difficulty';
 
 import { inject } from '@vercel/analytics';
+import Dapp from './scripts/Dapp';
 
 inject();
 
@@ -103,6 +104,9 @@ $('#fullscreenButton').on('click', openFullscreen);
 if (iOS) {
     $('#fullscreenButton').hide();
 }
+
+// enable connect button
+$('#connect-wallet-btn').on('click', Dapp.connect);
 
 // start game!
 var game = new Game();

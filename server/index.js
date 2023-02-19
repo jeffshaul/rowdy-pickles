@@ -1,5 +1,6 @@
 const express = require('express');
 const socketIO = require('socket.io');
+const Web3 = require('web3');
 const path = require('path');
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -30,6 +31,10 @@ const app = express();
 //     // -----------------------------------------------------------------------
 
 // });
+
+// create a web3 instance and set a provider
+// const web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
+// console.log(web3);
 
 // Have Node serve the files for our Webpacked app
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
