@@ -56,7 +56,6 @@ export default class Stage {
                 superstage, 
                 (gltf) => {
                     Stage.gltf = gltf;
-                    console.log(gltf);
                     resolve();
                 }, 
                 (xhr) => {
@@ -87,6 +86,7 @@ export default class Stage {
         this.letThereBeLight(stage.light);
         // this.loadObjects(stage.scenery);
         this.spawner = new Spawner(this.scene, stage);
+        this.spawner.loadSpawnPoints(this.stage1spawns);
     }
 
     // deprecate TODO
@@ -118,6 +118,33 @@ export default class Stage {
         this.scene.add( Stage.gltf.scene );
         this.camera = Stage.gltf.cameras[0];
         this.camera.animations = Stage.gltf.animations;
+        
+        this.stage1spawns = Stage.gltf.scene.children.filter((child) => {
+            const name = child.name;
+            if (name.includes('Stage1Spawn')) {
+                return true;
+            } else {
+                return false;
+            }        
+        });
+
+        this.stage2spawns = Stage.gltf.scene.children.filter((child) => {
+            const name = child.name;
+            if (name.includes('Stage2Spawn')) {
+                return true;
+            } else {
+                return false;
+            }        
+        });
+
+        this.stage3spawns = Stage.gltf.scene.children.filter((child) => {
+            const name = child.name;
+            if (name.includes('Stage3Spawn')) {
+                return true;
+            } else {
+                return false;
+            }        
+        });
     }
 
     // probably deprecate TODO

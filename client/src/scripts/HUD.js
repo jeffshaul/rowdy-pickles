@@ -62,11 +62,16 @@ export default class HUD {
         $('#killCount').text(kills);
         // TODO if pass req kills, show keep going msg
         if (kills === difficulty.requiredKills) {
-            HUD.keepGoing();
+            HUD.keepGoing(`Nice job! Push back ${difficulty.stage2requiredKills - difficulty.requiredKills} more pickles!`);
+        }
+
+        if (kills === difficulty.stage2requiredKills) {
+            HUD.keepGoing('Infinite Pickles!');
         }
     }
 
-    static keepGoing() {
+    static keepGoing(message) {
+        $('#keepGoingMessage').text(message);
         $('#keepGoingMessage').show();
 
         setTimeout(() => {

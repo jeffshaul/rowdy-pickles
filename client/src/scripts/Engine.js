@@ -20,9 +20,28 @@ export default class Engine {
         Pickle.Engine = this;
         Spawner.Engine = this;
 
+        // move to Choreographer TODO
+        // opening dolly back
         this.cameraMixer = new THREE.AnimationMixer(this.stage.camera);
-        this.cameraClip = this.stage.camera.animations[0];
-        this.cameraAction = this.cameraMixer.clipAction(this.cameraClip);
+
+        this.openingDollyClip = this.stage.camera.animations[2];
+        this.dollyToStage2Clip = this.stage.camera.animations[0];
+        this.dollyToStage3Clip = this.stage.camera.animations[1]; 
+
+        this.openingAnimation = this.cameraMixer.clipAction(this.openingDollyClip);
+        this.openingAnimation.setLoop(THREE.LoopOnce);
+        this.openingAnimation.clampWhenFinished = true;
+        this.openingAnimation.play();
+
+        // camera transition animation to stage 2
+        this.stage2Animation = this.cameraMixer.clipAction(this.dollyToStage2Clip);
+        this.stage2Animation.setLoop(THREE.LoopOnce);
+        this.stage2Animation.clampWhenFinished = true;
+
+        // camera transition animation to stage 3
+        this.stage3Animation = this.cameraMixer.clipAction(this.dollyToStage3Clip);
+        this.stage3Animation.setLoop(THREE.LoopOnce);
+        this.stage3Animation.clampWhenFinished = true;
 
         // this.boundStartGame = this.startGame.bind(this);
         window.addEventListener('resize', this.onWindowResize.bind(this));
@@ -62,7 +81,6 @@ export default class Engine {
     }
 
     beginSpawning() {
-        this.cameraAction.play();
         this.stage.spawner.engine = this; // eww refactor!! TODO
         this.stage.spawner.isPlaying = true;
         this.stage.spawner.resetClock();
@@ -78,11 +96,10 @@ export default class Engine {
         this.lastAnimation = now;
         this.stage.spawner.timeLastCalled = now;
 
-        // dolly TODO move out
-        // Choreographer.dollyCamera(this.stage.camera, elapsedTime);
+        // update camera mixer
         this.cameraMixer.update(deltaTime / 1000);
 
-        // update game
+        // update game entities
         this.stage.spawner.checkForSpawn(deltaTime);
         this.stage.spawner.pickles.forEach((pickle) => {
             pickle.animate(pickle, deltaTime, elapsedTime);
@@ -141,9 +158,23 @@ export default class Engine {
     }
 
     reactToHit() {
-        console.log('reacting to hit');
         this.kills++;
         HUD.updateKills(this.kills);
+
+        if (this.kills === difficulty.requiredKills) {
+            // advance to stage 2
+            this.openingAnimation.stop();
+            this.stage2Animation.play();
+            this.stage.spawner.loadSpawnPoints(this.stage.stage2spawns);
+        }
+
+        if (this.kills === difficulty.stage2requiredKills) {
+            // advance to stage 3
+            this.stage2Animation.stop();
+            this.stage3Animation.play();
+            this.stage.spawner.loadSpawnPoints(this.stage.stage3spawns);
+        }
+
         Choreographer.hitFlicker(this.stage.light);
         // TODO notify server of kill (include session UUID)
     }

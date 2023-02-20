@@ -1,5 +1,6 @@
 export default {
     requiredKills: 3,
+    stage2requiredKills: 6,
     startingSpawnInterval: 1000,
     minimumSpawnInterval: 80,
     rampingDuration: 50000,

@@ -13,7 +13,7 @@ export default class Spawner extends Observer {
         this.scene = scene;
         this.difficulty = difficulty;
         this.pickles = [];
-        this.unoccupiedSpawnLocations = stage.spawnLocations;
+        this.unoccupiedSpawnLocations;
         this.IsAvailableSpawnLocation = true;
         this.isPlaying = false;
         this.timeSinceLastSpawn = 0;
@@ -97,7 +97,7 @@ export default class Spawner extends Observer {
     notify(event) {
         // right now only Subject is Pickle which sends itself on death
         let pickle = event;
-        this.unoccupiedSpawnLocations.push(pickle.spawnLocation);
+        this.unoccupiedSpawnLocations.push(pickle.spawnLocation); // TODO only if pickle is in current stage
         this.IsAvailableSpawnLocation = true;
         this.pickles = this.pickles.filter((p) => {
             let pUUID = p.gameObject.uuid;
@@ -109,5 +109,24 @@ export default class Spawner extends Observer {
 
     resetClock() {
         this.gameBegan = Date.now();
+    }
+
+    /**
+     * Load spawning points for the Spawner to use
+     * 
+     * The array of Object3Ds is transformed to an Array of [x,y,z]s
+     * @param {*} spawns Array of Object3Ds
+     */
+    loadSpawnPoints(spawns) {
+        const arr = [];
+
+        spawns.forEach((spawn) => {
+            const x = spawn.position.x;
+            const y = spawn.position.y;
+            const z = spawn.position.z;
+            arr.push([x, y, z]);
+        });
+
+        this.unoccupiedSpawnLocations = arr;
     }
 }
