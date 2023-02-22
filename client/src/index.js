@@ -11,6 +11,9 @@ import highscore from './images/hud/highscore.png';
 import { iOS } from './scripts/Utilities';
 import loading from './images/hud/loadinggame.png';
 import credits from './images/hud/credits.png';
+import discord from './images/discord.png';
+import twitter from './images/twitter.png';
+import opensea from './images/opensea.png';
 import difficulty from './config/difficulty';
 import Dapp from './scripts/Dapp';
 
@@ -33,6 +36,9 @@ $('#credits').attr('src', credits);
 $('#creditsHitbox').on('click', () => {
     $('#credits').show();
 })
+$('#discord').attr('src', discord);
+$('#twitter').attr('src', twitter);
+$('#opensea').attr('src', opensea);
 
 $('#missMessage').hide();
 $('#overrunMessage').hide();
