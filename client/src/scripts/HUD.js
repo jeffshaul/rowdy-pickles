@@ -16,7 +16,7 @@ export default class HUD {
         $('#loadingBarImage').css('clip-path', 'inset(0% ' + percent + '% 0% 0%)');
     }
 
-    static displayGameOverHUD(message) {
+    static displayGameOverHUD(message, score) {
         
         switch (message) {
             case 'overrun':
@@ -32,6 +32,7 @@ export default class HUD {
         }
 
         HUD.getLeaderboardData();
+        HUD.setTweetIntentLink(score);
 
         setTimeout(() => {
             $('#gameOverHUD').show();
@@ -63,6 +64,13 @@ export default class HUD {
             $('#leaderboard-data').append(`<tr><td>${rank}</td><td>${pickleNumber}</td><td>${score}</td></tr>`);
             rank++;
         });
+    }
+
+    static setTweetIntentLink(score) {
+        const link = 'https://twitter.com/intent/tweet?text=';
+        const text =  `I pushed back ${score} pickles!  Check out the NFT collection at opensea.io/collection/rowdypickles`;
+        const fulllink = link + encodeURIComponent(text);
+        $('#tweet').attr('href', fulllink);
     }
 
     static loseLife(misses) {

@@ -191,9 +191,9 @@ export default class Engine {
 
     overrun() {
         if (this.kills >= difficulty.requiredKills) {
-            HUD.displayGameOverHUD('win');
+            HUD.displayGameOverHUD('win', this.kills);
         } else {
-            HUD.displayGameOverHUD('overrun');
+            HUD.displayGameOverHUD('overrun', this.kills);
         }        
         this.checkForHighScore();
         this.endGame();
@@ -201,9 +201,9 @@ export default class Engine {
 
     missedTooManyTimes() {
         if (this.kills >= difficulty.requiredKills) {
-            HUD.displayGameOverHUD('win');
+            HUD.displayGameOverHUD('win', this.kills);
         } else {
-            HUD.displayGameOverHUD('miss');
+            HUD.displayGameOverHUD('miss', this.kills);
         }        
         this.stage.spawner.isPlaying = false;
         this.checkForHighScore();
