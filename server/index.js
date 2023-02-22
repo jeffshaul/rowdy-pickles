@@ -2,6 +2,7 @@ const express = require('express');
 const socketIO = require('socket.io');
 const Web3 = require('web3');
 const path = require('path');
+const { writeToLeaderboard, readFromLeaderboard } = require('./leaderboard');
 const PORT = process.env.PORT || 3001;
 const app = express();
 
@@ -32,18 +33,12 @@ const app = express();
 
 // });
 
-// create a web3 instance and set a provider
-// const web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
-// console.log(web3);
 
 // Have Node serve the files for our Webpacked app
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
 
-app.get('/page1', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client/dist', 'page1.html'));
-});
 
-// All other GET requests not handled before will return our React app
+// all requests go to index.html
 app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client/dist', 'index.html'));
 });
@@ -63,7 +58,16 @@ io.on('connection', (socket) => {
     });
 
     // Listen for client data
-    socket.on('clientData', (...payload) => {
-        socket.emit('serverData', classifications);
+    socket.on('score', (...payload) => {
+        // socket.emit('serverData', classifications);
+        const pickleNumber = payload[0];
+        const score = payload[1];
+        writeToLeaderboard(pickleNumber, score);
+    });
+
+    socket.on('needLeaderboardData', (...payload) => {
+        readFromLeaderboard().then((data) => {
+            socket.emit('leaderboardData', data);
+        });        
     });
 });

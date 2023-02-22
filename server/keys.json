@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "rowdy-pickles",
+  "private_key_id": "731c57e8c41175feaa909c534ce928c9a0642807",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCXk1xd6PcXVdDA\nexHucAwz6pi4S9+dwzq5jv1OUPNJcK4JUYRCAtcbcJCalKLARBQwKqvLzfAIAkJ+\nxPY1hjGUytrvQGVtiYPytP0fr9owTUx0TWhbgdZIrVGhNdjSVD1ZGac+HsOrIzLQ\nHqwKa7ONHMa8dFSn9wBDujPeXw5XUUamh4YvizNm5FY63w4QmH7UKpQnfg9TbBt1\ndLlAD60GtgC9cfZt53Uh9TSkzg4ungTxdpKkHK1YgB+8kWIRw7HFXr7ZRw6mqCTo\nzUvDZyGzef6E8HSYmmlKXyuAM8ERs7WAo2/Y8BbeK2gsEfpIeMhHRMZqHodyKWYU\n490J2zIfAgMBAAECggEAP0s/Ik3iREHG8mFR2w254sH/NNImFgRMlOizOM1P0iZ1\n3hlGj6QM+/3UvF/92Ch1f6mJ5Ihhx45eAv6vSyl2scnFg2uSDxwB18sg+ebeRxY4\nK0aZocCFYQLS1+0a1bVsirTOJAAHuAJyOPrd31oa932BNXekVCEt4Jo0B5MM84Ot\nww+kMWnVXQRTQCJWTR1Lb7PnXc7YdE0ffvr/bERXYAY9tsb5g+j/7TrsKjRpApZu\nni3hQ6UrstNUgkxafckpebIkfiX5R8Zq0UPL5FCMvG0a8vDCpffaHSgHq4e6FI4z\nA9DSHqP1+namgTAhdhauW+TxpF8bw+lOzsZA4wWOSQKBgQDNX/iACKb9dCsALF4+\nUW7iCPoRrRDfqNbuQicP2p97E+mwRUXZLLeeA4hzIjuQDAkQ9DJgBjgNgjpaxwf2\nKgmrb3OGj2KIU6vp2+S9oJzq12uE9Wzi/L2+lNRgScB/OYhzy6FeRUDjo2bjFLKL\ntjl9RtjrcTzF/jRr9YDxcJKMFwKBgQC88G2R6F2ex+Dqz/VI9656is8BzhiLUNIk\nSg23GR347eeUmk9QAjGKKD5o9YnS4dlnGaEX2Az1MAFdue+VgNvCYsaGa146OkYE\no2SrVvEZuagm22VNLIBVGyPbxQS7k5txzspmjuh8aRlr8XeR34TOiNvLsX7MO9yq\n1UPzYkGnOQKBgQDDXAhhmllm/Yst9gaMFyB4CXv/Nna3mr8hE3Je5WMRS8be83ZW\n+O+NcuToSGcKRjiVlQUaTLAjQX7K/Ur4gdKC7lihZmGfNqBwq8iyDUdXKSXQ6zjx\nzuObl61SDrX7D7paFBjjONNZ9wSW/Ag/WE7leXA8vpHF8WLiUz2d7aypbwKBgGBb\nQZYK6kwC5dr66b4nyszmI8Jo6C2Mr08gkTQS1C1SrysjM1W7eKZb9dAzgPGSivxA\nnt55KcqVi+zP2bbmO608EMEW2rxZYcIVzk5vjZAwFeiTNWuRSXWd3MDFDq/XDIyT\nCLgbI8fnFbbuM6uqUaG/PFD6mY7w7I4XK4thTdhJAoGAFDxtA8McbBzat+6D0jAD\nOZQlkkv3nNvxcB4SwQ5rEGLeFvjVo6jM0DcxnUHvLFKdpJsxyP+y/jUg2LGLRx7g\nMMrLlV8gm/kieNuoD9lDITyOswJyFI+a3lrr1+iznUFxbv45EUhYrh92s10fG//2\nK91V0TVNIAE/HcwmUzcP0HI=\n-----END PRIVATE KEY-----\n",
+  "client_email": "rowdy-pickles-leaderboard@rowdy-pickles.iam.gserviceaccount.com",
+  "client_id": "103185552016210710777",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/rowdy-pickles-leaderboard%40rowdy-pickles.iam.gserviceaccount.com"
+}

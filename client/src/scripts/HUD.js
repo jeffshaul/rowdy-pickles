@@ -4,6 +4,7 @@ import lostlife from '../images/hud/lostlife.png'
 import logo from '../images/hud/logo.png'
 import { importAll, randomInt, randomPick } from './Utilities';
 import difficulty from '../config/difficulty';
+import Socket from './Socket';
 // const headshots = Object.values(importAll(require.context('../images/headshots/')));
 // console.log(headshots);
 
@@ -30,12 +31,38 @@ export default class HUD {
             default:
         }
 
+        HUD.getLeaderboardData();
+
         setTimeout(() => {
             $('#gameOverHUD').show();
             $('#gameOverHUD').addClass('gameOverAnimation');
             $('#leaderboard-logo').attr('src', logo);
         }, 1700);
         
+    }
+
+    static getLeaderboardData() {
+        Socket.initialize(HUD.populateLeaderboard);
+        Socket.readFromLeaderboard();
+    }
+
+    static populateLeaderboard(data) {
+        const values = data[0].values;
+        values.sort((a, b) => {
+            if (parseInt(a[1]) === parseInt(b[1])) {
+                return 0;
+            } else {
+                return (parseInt(a[1]) < parseInt(b[1]) ? -1 : 1);
+            }
+        }).reverse();
+
+        let rank = 1;
+        values.forEach((value) => {
+            const pickleNumber = value[0];
+            const score = value[1];
+            $('#leaderboard-data').append(`<tr><td>${rank}</td><td>${pickleNumber}</td><td>${score}</td></tr>`);
+            rank++;
+        });
     }
 
     static loseLife(misses) {

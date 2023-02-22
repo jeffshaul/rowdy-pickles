@@ -12,11 +12,8 @@ import { iOS } from './scripts/Utilities';
 import loading from './images/hud/loadinggame.png';
 import credits from './images/hud/credits.png';
 import difficulty from './config/difficulty';
-
-import { inject } from '@vercel/analytics';
 import Dapp from './scripts/Dapp';
 
-inject();
 
 // set up asset URLs
 $('#landing-logo').attr('src', logo);

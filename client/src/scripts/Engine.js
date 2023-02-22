@@ -7,6 +7,7 @@ import Choreographer from './Choreographer';
 import Pickle from './Pickle';
 import difficulty from '../config/difficulty';
 import HUD from './HUD';
+import Socket from './Socket';
 
 export default class Engine {
     constructor() {
