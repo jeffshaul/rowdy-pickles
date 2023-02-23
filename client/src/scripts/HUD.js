@@ -111,7 +111,7 @@ export default class HUD {
 
         setTimeout(() => {
             $('#keepGoingMessage').hide();
-        }, 700);
+        }, 1500);
     }
 
     static countdown(engine) {
