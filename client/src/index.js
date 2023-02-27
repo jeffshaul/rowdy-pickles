@@ -17,6 +17,12 @@ import opensea from './images/opensea.png';
 import difficulty from './config/difficulty';
 import Dapp from './scripts/Dapp';
 
+// check for captive browsers
+// if (navigator.userAgent.includes('captive')) {
+    
+// }
+
+
 // set up asset URLs
 $('#landing-logo').attr('src', logo);
 $('#logo').attr('src', logo);
