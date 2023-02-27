@@ -16,9 +16,6 @@ import twitter from './images/twitter.png';
 import opensea from './images/opensea.png';
 import difficulty from './config/difficulty';
 import Dapp from './scripts/Dapp';
-import headshot from './images/headshots/1.png';
-
-$('#headshot').attr('src', headshot);
 
 // set up asset URLs
 $('#landing-logo').attr('src', logo);
