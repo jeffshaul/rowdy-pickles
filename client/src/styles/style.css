@@ -27,6 +27,12 @@ button {
     color: black;
 }
 
+.captive {
+    transform: rotate(90deg);
+    width: 100vw;
+    height: 100vh;
+}
+
 #loadingScreen {
     background-color: black;
     z-index: 1000;
@@ -41,7 +47,7 @@ button {
     position: absolute;
     height: 100%;
     width: 100%;
-    z-index: 1;
+    z-index: 2000;
     text-align: center;
 }
 

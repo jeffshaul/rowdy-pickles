@@ -18,9 +18,12 @@ import difficulty from './config/difficulty';
 import Dapp from './scripts/Dapp';
 
 // check for captive browsers
-// if (navigator.userAgent.includes('captive')) {
-    
-// }
+console.log(navigator.userAgent);
+if (navigator.userAgent.includes('captive')) {
+    document.documentElement.classList.add('captive');
+    const blocker = document.getElementById('blocker');
+    blocker.remove();
+}
 
 
 // set up asset URLs
