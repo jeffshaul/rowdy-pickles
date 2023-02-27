@@ -58,11 +58,11 @@ $('#tryAgainBtn').on('click', function () {
 });
 
 $('#mintBtn').on('click', function () {
-    window.location.href = 'https://mint.rowdypickles.com';
+    window.open('https://mint.rowdypickles.com', '_blank').focus();
 });
 
 $('#homeBtn').on('click', function () {
-    window.location.href = 'https://www.rowdypickles.com';
+    window.open('https://www.rowdypickles.com', '_blank').focus();
 });
 
 // set up fullscreen button
