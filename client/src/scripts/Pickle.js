@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import Choreographer from "./Choreographer";
 import Subject from "./Subject";
-import { loadTexture, importAll, createPlaneFromTexture, randomPick } from "./Utilities";
+import { loadTexture, importAll, createPlaneFromTexture, randomPick, shuffleArray } from "./Utilities";
 import pickleBehavior from "../config/pickleBehavior";
 const pickleImageFilenames = Object.values(importAll(require.context("../images/pickles/")));
 
@@ -30,7 +30,9 @@ export default class Pickle extends Subject {
             });
 
         const promises = [];
-        pickleImageFilenames.forEach((image) => {
+        shuffleArray(pickleImageFilenames);
+        const shuffledPickles = pickleImageFilenames.slice(0, pickleBehavior.picklesToImport);
+        shuffledPickles.forEach((image) => {
             const loadPromise = loadImage(image).then((img) => {
                 updateLoadProgressFunc();
                 Pickle.pickleImages.push(img);
