@@ -102,7 +102,7 @@ button {
     background-size: 100% 100%;
     padding: 10vh 15vh;
     font-family: 'Troika';
-    z-index: 1000;
+    z-index: 900;
     animation: bouncy 1s linear 0s 1 normal forwards;
 }
 
