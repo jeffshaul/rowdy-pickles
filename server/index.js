@@ -59,10 +59,13 @@ io.on('connection', (socket) => {
 
     // Listen for client data
     socket.on('score', (...payload) => {
-        // socket.emit('serverData', classifications);
         const pickleNumber = payload[0];
         const score = payload[1];
-        writeToLeaderboard(pickleNumber, score);
+        writeToLeaderboard(pickleNumber, score).then((res) => {
+            readFromLeaderboard().then((data) => {
+                socket.emit('written', data);
+            });
+        });            
     });
 
     socket.on('needLeaderboardData', (...payload) => {

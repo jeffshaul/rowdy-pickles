@@ -15,15 +15,17 @@ const googleSheetsInstance = google.sheets({
 const spreadsheetId = '1YdnL1SEMP1N6nj86-7Z4vjfaV264SjkuSLA6vZ07ST8';
 
 exports.writeToLeaderboard = (pickleNumber, score) => {
-    googleSheetsInstance.spreadsheets.values.append({
+    return googleSheetsInstance.spreadsheets.values.append({
         auth,
         spreadsheetId,
-        range: 'Leaderboard!A:B',
+        range: 'Scores!A:B',
         valueInputOption: 'USER_ENTERED',
         resource: {
             values: [[`${pickleNumber}`, `${score}`]]
         }
-    });
+    }).then((res => {
+        return res;
+    }));
 }
 
 exports.readFromLeaderboard = () => {

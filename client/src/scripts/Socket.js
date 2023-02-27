@@ -10,6 +10,10 @@ export default class Socket {
             console.log(payload);
             callback(payload);
         });
+
+        Socket.socket.on('written', (...payload) => {
+            callback(payload)
+        })
     }
 
     static readFromLeaderboard() {

@@ -5,6 +5,7 @@ import logo from '../images/hud/logo.png'
 import { importAll, randomInt, randomPick } from './Utilities';
 import difficulty from '../config/difficulty';
 import Socket from './Socket';
+import Dapp from './Dapp';
 // const headshots = Object.values(importAll(require.context('../images/headshots/')));
 // console.log(headshots);
 
@@ -17,7 +18,7 @@ export default class HUD {
     }
 
     static displayGameOverHUD(message, score) {
-        
+
         switch (message) {
             case 'overrun':
                 $('#overrunMessage').toggle();
@@ -31,15 +32,52 @@ export default class HUD {
             default:
         }
 
-        HUD.getLeaderboardData();
+
+        HUD.buildLeaderboard(score);
         HUD.setTweetIntentLink(score);
 
         setTimeout(() => {
             $('#gameOverHUD').show();
             $('#gameOverHUD').addClass('gameOverAnimation');
             $('#leaderboard-logo').attr('src', logo);
-        }, 1700);
-        
+        }, 1500);
+
+    }
+
+    static buildLeaderboard(score) {
+        const isEligible = (score >= difficulty.stage2requiredKills);
+        const isWalletConnected = Dapp.wallet !== undefined;
+
+        if (isEligible) {
+            if (isWalletConnected) {
+                HUD.assignToken(score);
+            } else {
+                $('#disconnected').show();
+                $('#leaderboard-table').addClass('greyout');
+                $('#connect-2').on('click', (e) => {
+                    Dapp.connect2().then(() => {
+                        HUD.assignToken(score);
+                    });
+                })
+            }
+        } else {
+            $("#ineligible").show();
+            $("#leaderboard-table").addClass('greyout');
+        }
+    }
+
+    static assignToken(score) {
+        const tokens = Dapp.getTokens();
+        tokens.then((tokenList) => {
+            if (tokenList.length === 0) {
+                $('#notokens').show();
+                $('#leaderboard-table').addClass('greyout');
+            } else {
+                Socket.initialize(HUD.populateLeaderboard);
+                // TODO pick lowest-scoring token
+                Socket.writeToLeaderboard(tokenList[0], score);
+            }
+        });
     }
 
     static getLeaderboardData() {
@@ -61,6 +99,9 @@ export default class HUD {
         values.forEach((value) => {
             const pickleNumber = value[0];
             const score = value[1];
+            if (parseInt(score) === 0) {
+                return;
+            }
             $('#leaderboard-data').append(`<tr><td>${rank}</td><td>${pickleNumber}</td><td>${score}</td></tr>`);
             rank++;
         });
@@ -68,7 +109,7 @@ export default class HUD {
 
     static setTweetIntentLink(score) {
         const link = 'https://twitter.com/intent/tweet?text=';
-        const text =  `I pushed back ${score} pickles!  Check out the NFT collection at opensea.io/collection/rowdypickles`;
+        const text = `I pushed back ${score} pickles!  Check out the NFT collection at opensea.io/collection/rowdypickles`;
         const fulllink = link + encodeURIComponent(text);
         $('#tweet').attr('href', fulllink);
     }
@@ -149,15 +190,15 @@ export default class HUD {
             countdown1.style.display = 'none';
             goalMessage.style.display = 'block';
             engine.beginSpawning();
-            
+
         }, 3 * general.countdownInterval);
 
         setTimeout(() => {
-            goalMessage.style.display = 'none';            
+            goalMessage.style.display = 'none';
         }, 6 * general.countdownInterval);
     }
 
     static stampHighScore() {
         $('#highscore').show();
-    }    
+    }
 }

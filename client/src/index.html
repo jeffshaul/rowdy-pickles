@@ -78,18 +78,18 @@
       <div class="leaderboard-grid">
         <div class="Leaderboard-Table">
           <h1>Leaderboard</h1>
-          <table>
+          <table id="leaderboard-table">
             <thead>
               <tr>
                 <td>Rank</td>
-                <td>Pickle</td>
+                <td>Token ID</td>
                 <td>Score</td>
               </tr>
             </thead>
             <tbody id="leaderboard-data">
             </tbody>
           </table>
-          <h2>Stage 2 unlocks when 100 pickles are minted!</h2>
+          <!-- <h2>Stage 2 unlocks when 100 pickles are minted!</h2> -->
         </div>
 
         <div class="Logo">
@@ -113,6 +113,20 @@
           <a href="https://discord.gg/xVFY8nfkag"><img id="discord" src=""></a>
           <a href="https://opensea.io/collection/rowdypickles"><img id="opensea" src=""></a>
         </div>
+      </div>
+      <div id='ineligible' class="ineligible">
+        <p>😢</p>
+        <p>You aren't Rowdy enough!</p>
+        <p>Play again and beat Stage 2 this time!</p>
+      </div> 
+      <div id='disconnected' class="ineligible">
+        <p>Wallet not found.  Please connect</p>
+        <p><button id='connect-2' class="menu-button">Connect</button></p>
+      </div>
+      <div id='notokens' class="ineligible">
+        <p>No pickles found.  Your score will not be recorded.</p>
+        <p>Please mint!</p>
+        <p><button class="menu-button">Mint</button></p>
       </div>
     </div>
   </div>
