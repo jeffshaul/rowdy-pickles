@@ -11,6 +11,8 @@ import Dapp from './Dapp';
 
 export default class HUD {
 
+    static recorded;
+
     static updateLoadingScreen(loadProgress) {
         let percent = loadProgress / 48 * 100;
         percent = 100 - percent;
@@ -40,6 +42,9 @@ export default class HUD {
             $('#gameOverHUD').show();
             $('#gameOverHUD').addClass('gameOverAnimation');
             $('#leaderboard-logo').attr('src', logo);
+            const rowid = 'row-' + HUD.recorded;
+            const row = document.getElementById(rowid);
+            row.classList.add('highlight');
         }, 1500);
 
     }
@@ -76,6 +81,7 @@ export default class HUD {
                 Socket.initialize(HUD.populateLeaderboard);
                 // TODO pick lowest-scoring token
                 Socket.writeToLeaderboard(tokenList[0], score);
+                HUD.recorded = tokenList[0];
             }
         });
     }
@@ -102,7 +108,7 @@ export default class HUD {
             if (parseInt(score) === 0) {
                 return;
             }
-            $('#leaderboard-data').append(`<tr><td>${rank}</td><td>${pickleNumber}</td><td>${score}</td></tr>`);
+            $('#leaderboard-data').append(`<tr id='row-${pickleNumber}'><td>${rank}</td><td><a href='https://opensea.io/assets/ethereum/0x859201b9229cd22211f08fcfbd554830d54e8193/${pickleNumber}'>#${pickleNumber}</a></td><td>${score}</td></tr>`);
             rank++;
         });
     }
