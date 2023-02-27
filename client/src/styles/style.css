@@ -242,6 +242,7 @@ button {
     text-align: center;
     color: white;
     animation: gameEndAnimation 1.5s linear 0s 1 normal forwards;
+    pointer-events: none;
 }
 
 #gameOverHUD {
