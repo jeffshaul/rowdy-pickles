@@ -77,13 +77,34 @@ export default class HUD {
             if (tokenList.length === 0) {
                 $('#notokens').show();
                 $('#leaderboard-table').addClass('greyout');
-            } else {
+            } else if (tokenList.length === 1) {
                 Socket.initialize(HUD.populateLeaderboard);
-                // TODO pick lowest-scoring token
                 Socket.writeToLeaderboard(tokenList[0], score);
                 HUD.recorded = tokenList[0];
+            } else {
+                // owner has to select which token
+                HUD.populateTokenSelection(tokenList);
+                $('#selecttoken').show();                
+                $('#leaderboard-table').addClass('greyout');
+                $('.pickle-token').on('click', (event) => {
+                    event.stopPropagation();
+                    event.stopImmediatePropagation();
+                    const target = event.target.closest('.pickle-token');
+                    const pickleNumber = target.firstElementChild.innerHTML.substring(1);
+                    Socket.initialize(HUD.populateLeaderboard);
+                    Socket.writeToLeaderboard(pickleNumber, score);
+                    $('#selecttoken').hide();
+                    $('#leaderboard-table').removeClass('greyout');
+                    $(`#row-${pickleNumber}`).addClass('highlight');
+                });
             }
         });
+    }
+
+    static populateTokenSelection(tokenList) {
+        for (const token of tokenList) {
+            $('#pickle-picker').append(`<div class='pickle-token'><p>#${token}</p><img src=''><p>Score</p></div>`);
+        }
     }
 
     static getLeaderboardData() {
