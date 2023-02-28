@@ -14,6 +14,8 @@ export default class Dapp {
                 Dapp.wallet = accounts[0];
             }
             else { document.getElementById("connect-wallet-btn").innerHTML = "Connect wallet"; }
+        } else {
+            document.getElementById('connect-wallet-btn').innerHTML = 'Need MetaMask!';
         }
         return false;
     }
@@ -27,6 +29,8 @@ export default class Dapp {
                 $('#leaderboard-table').removeClass('greyout');
             }
             else { document.getElementById("connect-wallet-btn").innerHTML = "Unable to Connect"; }
+        } else {
+            document.getElementById('mint-2').innerHTML = 'Need MetaMask!';
         }
         return false;
     }
