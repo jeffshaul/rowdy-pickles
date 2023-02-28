@@ -7,7 +7,6 @@ export default class Socket {
 
     static initialize(callback) {
         Socket.socket.on('leaderboardData', (...payload) => {
-            console.log(payload);
             callback(payload);
         });
 

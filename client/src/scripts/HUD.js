@@ -42,9 +42,10 @@ export default class HUD {
             $('#gameOverHUD').show();
             $('#gameOverHUD').addClass('gameOverAnimation');
             $('#leaderboard-logo').attr('src', logo);
-            const rowid = 'row-' + HUD.recorded;
-            const row = document.getElementById(rowid);
-            row.classList.add('highlight');
+            // const rowid = 'row-' + HUD.recorded;
+            // console.log('rowid', rowid);
+            // const row = document.getElementById(rowid);
+            // row.classList.add('highlight');
         }, 1500);
 
     }
@@ -81,6 +82,7 @@ export default class HUD {
                 Socket.initialize(HUD.populateLeaderboard);
                 Socket.writeToLeaderboard(tokenList[0], score);
                 HUD.recorded = tokenList[0];
+                HUD.scrollToScore(tokenList[0]);
             } else {
                 // owner has to select which token
                 HUD.populateTokenSelection(tokenList);
@@ -95,15 +97,26 @@ export default class HUD {
                     Socket.writeToLeaderboard(pickleNumber, score);
                     $('#selecttoken').hide();
                     $('#leaderboard-table').removeClass('greyout');
-                    $(`#row-${pickleNumber}`).addClass('highlight');
+                    HUD.scrollToScore(pickleNumber);
+                    // $(`#row-${pickleNumber}`).addClass('highlight');
                 });
             }
         });
     }
 
+    static scrollToScore(token) {
+        $('#leaderboard-data').on('updated-scores', () => {
+            console.log(token);
+            const rowID = 'row-' + token;
+            const row = document.getElementById(rowID);
+            row.classList.add('highlight');
+            row.scrollIntoView();
+        });        
+    }
+
     static populateTokenSelection(tokenList) {
         for (const token of tokenList) {
-            $('#pickle-picker').append(`<div class='pickle-token'><p>#${token}</p><img src=''><p>Score</p></div>`);
+            $('#pickle-picker').append(`<div class='pickle-token'><p>#${token}</p><img src='https://plum-keen-wren-324.mypinata.cloud/ipfs/QmYUBTbL6Ex1SpPqihvC9CrbEawb82DLdZC71TxbPby8zB/${token}.png'><p></p></div>`);
         }
     }
 
@@ -133,6 +146,9 @@ export default class HUD {
             $('#leaderboard-data').append(`<tr id='row-${pickleNumber}'><td>${rank}</td><td><a href='https://opensea.io/assets/ethereum/0x859201b9229cd22211f08fcfbd554830d54e8193/${pickleNumber}'>#${pickleNumber}</a></td><td>${score}</td></tr>`);
             rank++;
         });
+
+        const event = new Event('updated-scores');
+        $('#leaderboard-data')[0].dispatchEvent(event);
     }
 
     static setTweetIntentLink(score) {
