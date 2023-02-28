@@ -143,7 +143,7 @@ export default class HUD {
                 return;
             }
             // picture url https://gateway.pinata.cloud/ipfs/QmRfjoj9GewN4vRcT89rg7JBcmfeBGFK7XYmMTvEggYH1f/5.png
-            $('#leaderboard-data').append(`<tr id='row-${pickleNumber}'><td>${rank}</td><td><a href='https://opensea.io/assets/ethereum/0x859201b9229cd22211f08fcfbd554830d54e8193/${pickleNumber}'>#${pickleNumber}</a></td><td>${score}</td></tr>`);
+            $('#leaderboard-data').append(`<tr id='row-${pickleNumber}'><td>${rank}</td><td><a href='https://opensea.io/assets/ethereum/0x859201b9229cd22211f08fcfbd554830d54e8193/${pickleNumber} target='_blank'>#${pickleNumber}</a></td><td>${score}</td></tr>`);
             rank++;
         });
 
