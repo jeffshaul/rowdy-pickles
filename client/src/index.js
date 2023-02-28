@@ -14,6 +14,7 @@ import credits from './images/hud/credits.png';
 import discord from './images/discord.png';
 import twitter from './images/twitter.png';
 import opensea from './images/opensea.png';
+import sadPickle from './images/hud/sadpickle.png';
 import difficulty from './config/difficulty';
 import Dapp from './scripts/Dapp';
 
@@ -47,6 +48,7 @@ $('#creditsHitbox').on('click', () => {
 $('#discord').attr('src', discord);
 $('#twitter').attr('src', twitter);
 $('#opensea').attr('src', opensea);
+$('.sad-pickle').attr('src', sadPickle);
 
 $('#missMessage').hide();
 $('#overrunMessage').hide();

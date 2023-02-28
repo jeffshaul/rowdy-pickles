@@ -395,11 +395,15 @@ button {
 .ineligible {
     display: none;
     position: absolute;
-    top: 30%;
+    top: 22%;
     left: 17%;
     width: 25vw;
     text-align: center;
     font-size: 4vh;
+}
+
+.ineligible img {
+    height: 31vh;
 }
 
 .greyout {
